@@ -22,10 +22,15 @@ class AppControllerTest extends TestCase
     /**
      * Test that index returns empty
      */
-    public function testEmptyIndexAction()
+    public function testIndexReturnEndpointsList()
     {
         $response = $this->controller->indexAction();
-        $this->assertEmpty($response);
+        $decodedResponse = json_decode($response->getContent(), true);
+
+        $this->assertInstanceOf(JsonResponse::class, $response);
+        $this->assertEquals(1, count($decodedResponse));
+        $this->assertArrayHasKey('available_endpoints', $decodedResponse);
+        $this->assertEquals(2, count($decodedResponse['available_endpoints']));
     }
 
     /**

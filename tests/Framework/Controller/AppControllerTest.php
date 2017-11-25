@@ -30,7 +30,7 @@ class AppControllerTest extends TestCase
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals(1, count($decodedResponse));
         $this->assertArrayHasKey('available_endpoints', $decodedResponse);
-        $this->assertEquals(2, count($decodedResponse['available_endpoints']));
+        $this->assertEquals(3, count($decodedResponse['available_endpoints']));
     }
 
     /**

@@ -22,10 +22,24 @@ class AppController extends Controller
      * @Route("/search")
      * @Route("/search?ingredients={ingredients}")
      *
+     * @param string $ingredients
+     *
      * @return JsonResponse
      */
     public function searchAction($ingredients = '')
     {
         return new JsonResponse([]);
+    }
+
+    /**
+     * @Route("recipe/{recipeId}")
+     *
+     * @param $recipeId
+     *
+     * @return JsonResponse
+     */
+    public function recipeAction($recipeId)
+    {
+        return new JsonResponse(['error' => 'Item Not Found'], 404);
     }
 }

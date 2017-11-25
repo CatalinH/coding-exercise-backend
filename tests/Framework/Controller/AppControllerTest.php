@@ -42,4 +42,17 @@ class AppControllerTest extends TestCase
 
         $this->assertInstanceOf(JsonResponse::class, $response);
     }
+
+    /**
+     * Test that recipe action returns error
+     */
+    public function testRecipeAction()
+    {
+        $response = $this->controller->recipeAction('abc');
+        $decodedResponse = json_decode($response->getContent(), true);
+
+        $this->assertInstanceOf(JsonResponse::class, $response);
+        $this->assertEquals(1, count($decodedResponse));
+        $this->assertArrayHasKey('error', $decodedResponse);
+    }
 }

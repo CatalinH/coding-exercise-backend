@@ -64,7 +64,9 @@ class RecipeController extends Controller
      */
     public function recipeAction($recipeId)
     {
-        //TODO make hash over recipe data and store them so can be later displayed as favorite
+        //TODO store recipe data + uniqueid for each so can be later link recipe as user favorites
+        //TODO ability to get specific recipe data
+        //TODO ability to filter by meal type / food type (vegan, vegetarian, dairy-free, gluten-free, meat, fish & seafood)
         return new JsonResponse(['error' => 'Item Not Found'], 404);
     }
 }

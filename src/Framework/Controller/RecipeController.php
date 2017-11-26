@@ -2,12 +2,22 @@
 
 namespace App\Framework\Controller;
 
+use App\Domain\RecipePuppy\RecipeService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class AppController extends Controller
+class RecipeController extends Controller
 {
+
+    /** @var RecipeService */
+    private $recipeService;
+
+    public function __construct(RecipeService $recipeService)
+    {
+        $this->recipeService = $recipeService;
+    }
+
     /**
      * @Route("/")
      *
@@ -40,7 +50,9 @@ class AppController extends Controller
      */
     public function searchAction($page = 1, $query = '')
     {
-        return new JsonResponse([$query, $page]);
+        $result = $this->recipeService->searchRecipes($page, $query);
+
+        return new JsonResponse($result);
     }
 
     /**
@@ -52,6 +64,7 @@ class AppController extends Controller
      */
     public function recipeAction($recipeId)
     {
+        //TODO make hash over recipe data and store them so can be later displayed as favorite
         return new JsonResponse(['error' => 'Item Not Found'], 404);
     }
 }

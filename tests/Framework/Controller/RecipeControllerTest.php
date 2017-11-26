@@ -2,21 +2,28 @@
 
 namespace App\Tests\Framework\Controller;
 
-use App\Framework\Controller\AppController;
+use App\Framework\Controller\RecipeController;
+use App\Framework\Services\Recipe\RecipeService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class AppControllerTest extends TestCase
+class RecipeControllerTest extends TestCase
 {
-    /** @var AppController */
+    /** @var RecipeController */
     private $controller;
+
+    /** @var RecipeService|\PHPUnit_Framework_MockObject_MockObject */
+    private $recipeServiceMock;
 
     /**
      * Setup tests
      */
     public function setUp()
     {
-        $this->controller = new AppController();
+        $this->recipeServiceMock = $this->getMockBuilder(RecipeService::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->controller = new RecipeController($this->recipeServiceMock);
     }
 
     /**

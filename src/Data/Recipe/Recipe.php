@@ -5,6 +5,7 @@ namespace App\Data\Recipe;
 
 class Recipe extends \ArrayObject
 {
+
     /**
      * @param string $thumbnail
      *

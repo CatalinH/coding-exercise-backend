@@ -2,14 +2,14 @@
 
 namespace App\Domain\RecipePuppy;
 
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 
 class HttpClient
 {
-    /** @var Client  */
+
+    /** @var Client */
     private $client;
 
     /** @var HttpResponseProcessor */
@@ -18,7 +18,6 @@ class HttpClient
     /**
      * HttpClient constructor.
      *
-     * @param Client $client
      * @param HttpResponseProcessor $responseProcessor
      */
     public function __construct(HttpResponseProcessor $responseProcessor)

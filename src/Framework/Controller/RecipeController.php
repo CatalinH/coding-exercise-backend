@@ -64,6 +64,7 @@ class RecipeController extends Controller
      */
     public function recipeAction($recipeId)
     {
+        //TODO make hash over recipe data and store them so can be later displayed as favorite
         return new JsonResponse(['error' => 'Item Not Found'], 404);
     }
 }

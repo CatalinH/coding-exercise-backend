@@ -8,6 +8,7 @@ use function GuzzleHttp\Psr7\build_query;
 
 class RecipeService
 {
+
     const SERVICE_URL = 'http://www.recipepuppy.com/api/';
 
     /** @var HttpClient */
@@ -33,14 +34,14 @@ class RecipeService
     {
         parse_str($query, $requestedQuery);
 
-        $requestQuery = ['p' => $page];
+        $requestQuery = ['p' => (int)$page];
 
         if (isset($requestedQuery['ingredients'])) {
             $requestQuery['i'] = $requestedQuery['ingredients'];
         }
 
-        if(isset($requestedQuery['query'])){
-            $requestQuery['q'] =  $requestedQuery['query'];
+        if (isset($requestedQuery['query'])) {
+            $requestQuery['q'] = $requestedQuery['query'];
         }
 
         $response = $this->client->send('GET', self::SERVICE_URL . '?' . build_query($requestQuery));
@@ -60,7 +61,7 @@ class RecipeService
         $results = [];
 
         if (isset($response['results']) && count($response['results']) > 0) {
-            foreach($response['results'] as $result) {
+            foreach ($response['results'] as $result) {
                 $results[] = RecipeCreator::create($result['title'], $result['href'], $result['ingredients'], $result['thumbnail']);
             }
         }
